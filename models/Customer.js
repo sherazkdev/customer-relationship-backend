@@ -13,10 +13,15 @@ const customerSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    required: [true, 'Email is required'],
+    required: false,
     trim: true,
     lowercase: true,
-    match: [/^\S+@\S+\.\S+$/, 'Please enter a valid email']
+    validate: {
+      validator: function(v) {
+        return !v || /^\S+@\S+\.\S+$/.test(v);
+      },
+      message: 'Please enter a valid email'
+    }
   },
   visitTime: {
     type: Date,

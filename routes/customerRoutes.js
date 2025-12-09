@@ -14,7 +14,8 @@ const router = express.Router();
 const customerValidation = [
   body('name').trim().notEmpty().withMessage('Name is required'),
   body('phone').trim().notEmpty().withMessage('Phone number is required'),
-  body('email').isEmail().withMessage('Please enter a valid email'),
+  body('email').optional().isEmail().withMessage('Please enter a valid email'),
+  body('visitTime').optional().isISO8601().withMessage('Please enter a valid date'),
   body('note').optional().trim()
 ];
 

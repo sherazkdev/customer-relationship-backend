@@ -7,7 +7,6 @@ import callRoutes from './routes/callRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import employeeRoutes from './routes/employeeRoutes.js';
 import { errorHandler, notFound } from './middlewares/errorHandler.js';
-import { ensureSeedUsers } from './utils/seedUsers.js';
 dotenv.config();
 
 const app = express();
@@ -36,7 +35,6 @@ app.use(errorHandler);
 const startServer = async () => {
   try {
     await connectDB();
-    await ensureSeedUsers();
   } catch (error) {
     console.error('Failed to start server:', error);
     process.exit(1);
