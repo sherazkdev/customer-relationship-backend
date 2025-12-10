@@ -53,12 +53,12 @@ export const createCustomer = async (req, res, next) => {
       });
     }
 
-    const { name, phone, email, visitTime, note } = req.body;
+    const { name, phone, email, note, visitTime } = req.body;
 
     const customer = new Customer({
       name,
       phone,
-      email: email || undefined,
+      email: email && email.trim() ? email.trim() : undefined,
       note: note || '',
       visitTime: visitTime ? new Date(visitTime) : new Date(),
       createdBy: req.user?._id

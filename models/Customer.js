@@ -18,6 +18,7 @@ const customerSchema = new mongoose.Schema({
     lowercase: true,
     validate: {
       validator: function(v) {
+        // Only validate if email is provided
         return !v || /^\S+@\S+\.\S+$/.test(v);
       },
       message: 'Please enter a valid email'
