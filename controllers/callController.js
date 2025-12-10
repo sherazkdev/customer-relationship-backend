@@ -34,7 +34,7 @@ export const createCall = async (req, res, next) => {
       });
     }
 
-    const { customerId, status, message } = req.body;
+    const { customerId, status, message, callTime } = req.body;
 
     // Verify customer exists
     const customer = await Customer.findById(customerId);
@@ -49,7 +49,7 @@ export const createCall = async (req, res, next) => {
       customerId,
       status,
       message,
-      callTime: new Date(),
+      callTime: callTime ? new Date(callTime) : new Date(),
       createdBy: req.user?._id
     });
 

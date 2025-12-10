@@ -12,7 +12,8 @@ const router = express.Router();
 const callValidation = [
   body('customerId').notEmpty().withMessage('Customer ID is required'),
   body('status').isIn(['noresponse', 'cancelled', 'buyed']).withMessage('Invalid call status'),
-  body('message').trim().notEmpty().withMessage('Message is required')
+  body('message').trim().notEmpty().withMessage('Message is required'),
+  body('callTime').optional().isISO8601().withMessage('Please enter a valid date')
 ];
 
 // Routes
